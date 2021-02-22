@@ -1,0 +1,6 @@
+{
+  "extends": ["plugin:vue/base"],
+  "env": {
+    "webextensions": true
+  }
+}
