@@ -1,14 +1,21 @@
 {
-    "manifest_version": 3,
-    "name": "Request Cacher",
-    "version": "0.1.0",
-    "permissions": [
-        "storage"
-    ],
-    "background": {
-        "service_worker": "sw.js"
-    },
-    "action": {
-        "default_popup": "index.html"
+  "manifest_version": 3,
+  "name": "Request Cacher",
+  "version": "0.1.0",
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": true
     }
+  ]
 }

@@ -6,7 +6,7 @@
     </div>
     <div class="pb-2">
       <ul>
-        <li v-for="pattern in this.savedPatterns" :key="pattern" class="py-1 flex justify-between hover:bg-gray-200 rounded-lg px-2">
+        <li v-for="pattern in this.savedPatternsBlacklist" :key="pattern" class="py-1 flex justify-between hover:bg-gray-200 rounded-lg px-2">
           <span class="text-lg">{{ pattern }}</span>
           <img src="@/assets/icons/trash.svg" class="w-6 h-6 cursor-pointer" @click="deletePattern(pattern)"/>
         </li>
@@ -28,15 +28,15 @@ export default {
   data() {
     return {
       pattern: '',
-      savedPatterns: []
+      savedPatternsBlacklist: []
     };
   },
   created() {
-    this.loadSavedPatterns();
+    this.loadSavedPatternsBlacklist();
 
     chrome.storage.onChanged.addListener(data => {
-      if (data.patterns) {
-        this.savedPatterns = data.patterns.newValue;
+      if (data.patterns_blacklist) {
+        this.savedPatternsBlacklist = data.patterns_blacklist.newValue;
       }
     });
   },
@@ -46,12 +46,12 @@ export default {
         return;
       }
 
-      chrome.storage.local.get('patterns', data => {
-        if (!data.patterns) {
-          data.patterns = [];
+      chrome.storage.local.get('patterns_blacklist', data => {
+        if (!data.patterns_blacklist) {
+          data.patterns_blacklist = [];
         }
 
-        data.patterns.push(pattern);
+        data.patterns_blacklist.push(pattern);
 
         chrome.storage.local.set(data, () => {
           this.pattern = '';
@@ -59,9 +59,9 @@ export default {
       });
     },
     deletePattern(pattern) {
-      chrome.storage.local.get('patterns', data => {
-        if (data.patterns) {
-          data.patterns = data.patterns.filter(item => item !== pattern);
+      chrome.storage.local.get('patterns_blacklist', data => {
+        if (data.patterns_blacklist) {
+          data.patterns_blacklist = data.patterns_blacklist.filter(item => item !== pattern);
 
           chrome.storage.local.set(data, () => {
             // @todo: Add some action
@@ -69,9 +69,9 @@ export default {
         }
       });
     },
-    loadSavedPatterns() {
-      chrome.storage.local.get('patterns', data => {
-        this.savedPatterns = data.patterns || [];
+    loadSavedPatternsBlacklist() {
+      chrome.storage.local.get('patterns_blacklist', data => {
+        this.savedPatternsBlacklist = data.patterns_blacklist || [];
       });
     }
   }

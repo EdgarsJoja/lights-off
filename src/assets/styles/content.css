@@ -1,0 +1,34 @@
+:root {
+  --color-darkest: #1a1a2e;
+  --color-darker: #16213e;
+  --color-dark: #0f3460;
+  --color-accent: #e94560;
+  --color-content: #999;
+
+  --background-color: var(--color-darkest);
+  --background-color-light: var(--color-darker);
+  --text-color: var(--color-content);
+}
+
+.lo-theme-dark,
+.lo-theme-dark *,
+.lo-theme-dark *::before,
+.lo-theme-dark *::after {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+}
+
+.lo-theme-dark button {
+  border-color: var(--button-border-color) !important;
+}
+
+/* Typically code blocks, should have some difference from rest of the page */
+.lo-theme-dark pre,
+.lo-theme-dark pre * {
+  background-color: var(--background-color-light) !important;
+}
+
+.lo-theme-dark table,
+.lo-theme-dark table * {
+  background-color: var(--background-color-light) !important;
+}
