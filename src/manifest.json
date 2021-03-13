@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Lights Off!",
+  "name": "Lights Off",
   "version": "0.1.0",
   "permissions": ["storage"],
   "background": {

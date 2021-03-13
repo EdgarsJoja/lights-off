@@ -22,6 +22,11 @@
   border-color: var(--button-border-color) !important;
 }
 
+.lo-theme-dark [type="submit"] {
+  background-color: var(--color-accent) !important;
+  color: var(--color-dark) !important;
+}
+
 /* Typically code blocks, should have some difference from rest of the page */
 .lo-theme-dark pre,
 .lo-theme-dark pre * {

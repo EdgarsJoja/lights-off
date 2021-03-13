@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="flex p-2 pt-8">
-      <Input v-model="this.pattern" class="mr-4 flex-grow text-lg" />
-      <Button @click="addPattern(this.pattern)" class="font-medium">Add pattern</Button>
+      <Input v-model="this.pattern" placeholder="Ignore site (ex. 'example.com')..." class="mr-4 flex-grow text-lg" />
+      <Button @click="addPattern(this.pattern)" class="font-medium">Add Pattern</Button>
     </div>
     <div class="pb-2">
       <ul>

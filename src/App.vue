@@ -1,14 +1,8 @@
 <template>
-  <div class="p-4">
-    <div class="flex justify-around">
-      <div class="flex">
-        <div class="pr-4 text-lg">Cache responses:</div>
-        <Toggle></Toggle>
-      </div>
-      <div class="flex">
-        <div class="pr-4 text-lg">Use cached data:</div>
-        <Toggle></Toggle>
-      </div>
+  <div class="p-4 bg-gray-100">
+    <div class="flex">
+      <div class="pr-4 text-lg">Turn off the lights:</div>
+      <Toggle v-model="extensionEnabled"></Toggle>
     </div>
 
     <div class="w-full">
@@ -31,9 +25,20 @@ export default {
     Main
   },
   data() {
-    return {};
+    return {
+      extensionEnabled: false
+    };
   },
-  created() {}
+  watch: {
+    extensionEnabled(newValue, oldValue) {
+      chrome.storage.local.set({ enabled: newValue }, () => {});
+    }
+  },
+  created() {
+    chrome.storage.local.get('enabled', data => {
+      this.extensionEnabled = data.enabled || false;
+    });
+  }
 };
 </script>
 

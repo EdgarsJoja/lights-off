@@ -3,6 +3,7 @@
     type="text"
     :bind="$attrs"
     :value="modelValue"
+    :placeholder="placeholder"
     @input="$emit('update:modelValue', $event.target.value)"
     class="border-2 rounded-md outline-none p-1"
   />
@@ -13,7 +14,11 @@ export default {
   props: {
     modelValue: {
       default: '',
-      required: false
+      required: false,
+    },
+    placeholder: {
+      default: '',
+      required: false,
     }
   },
 };
